@@ -36,6 +36,7 @@
               <th>Nombres</th>
               <th>Fecha Nacimiento</th>
               <th>Genero</th>
+              <th>Elminar</th>
             </tr>
             {% for paciente in pacientes %}
             <tr>
@@ -44,6 +45,11 @@
               <td>{{ paciente.nombres }}</td>
               <td>{{ paciente.nacimiento }}</td>
               <td>{{ paciente.genero }}</td>
+              <td>
+                <form action = "{% url 'pacientes_eliminar' paciente.cuil%}" method="post">
+                  {% csrf_token %}
+                  <input type = "submit" class="btn btn-outline-dark  "  value = "Eliminar" />
+              </td>
             </tr>
             {% endfor %}
           </tbody>

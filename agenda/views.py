@@ -48,6 +48,14 @@ def vista_pacientes_agregar(request):
         return http_response
 
 
+def vista_pacientes_eliminar(request, id):
+    paciente = pacientes.objects.get(cuil=id)
+    if request.method == "POST":
+        paciente.delete()
+        url_exitosa = reverse('pacientes')
+        return redirect(url_exitosa)
+
+
 def vista_pacientes_buscar(request):
     if request.method == "POST":
         data = request.POST
