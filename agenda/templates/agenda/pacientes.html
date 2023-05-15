@@ -1,0 +1,53 @@
+{% extends 'agenda/base.html' %} 
+
+  {% block contenido%}
+ 
+      <!-- Encabezado de Seccion-->
+      <div class="text-center text-xxl-start">
+          <div class="badge bg-gradient-primary-to-secondary text-white mb-4"><div class="text-uppercase"> &middot; Pacientes &middot;</div></div>
+          <div class="fs-3 fw-light text-muted">Administrar y Consultar</div>
+          <h1 class="display-3 fw-bolder mb-5"><span class="text-gradient d-inline">Mis Pacientes</span></h1>
+          <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xxl-start mb-3">
+              <a class="btn btn-primary btn-lg px-5 py-3 me-sm-3 fs-6 fw-bolder" href="{% url 'pacientes_agregar' %}">Nuevo</a>
+           
+
+        <form action="{% url 'pacientes_buscar' %}" method="post">
+            {% csrf_token %}
+          <div class="row">
+            <div class="col">
+                <input type="text" class="form-control " placeholder="Buscar Apellido" name="busqueda">
+            </div>
+            <div class="col">
+              <input type="submit" class="btn btn-outline-dark btn-lg px-5 py-3 fs-6 fw-bolder" value="Buscar">
+            </div>
+          </div>
+        </form>
+       
+      </div>
+      </div>
+
+      <!-- Lista de Pacientes-->
+      <div class="shadow border-0 rounded-4">
+        <table class="table table-hover">
+          <tbody >
+            <tr>
+              <th>Cuil</th>
+              <th>Apellido</th>
+              <th>Nombres</th>
+              <th>Fecha Nacimiento</th>
+              <th>Genero</th>
+            </tr>
+            {% for paciente in pacientes %}
+            <tr>
+              <td>{{ paciente.cuil }}</td>
+              <td>{{ paciente.apellido }}</td>
+              <td>{{ paciente.nombres }}</td>
+              <td>{{ paciente.nacimiento }}</td>
+              <td>{{ paciente.genero }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      
+  {% endblock contenido%}

@@ -1,0 +1,40 @@
+{% extends 'agenda/base.html' %} 
+
+  {% block contenido%}
+ 
+      <!-- Encabezado de Seccion-->
+      <div class="text-center text-xxl-start">
+          <div class="badge bg-gradient-primary-to-secondary text-white mb-4"><div class="text-uppercase"> &middot; Ficha &middot;</div></div>
+          <div class="fs-3 fw-light text-muted">Administrar y Consultar</div>
+          <h1 class="display-3 fw-bolder mb-5"><span class="text-primary d-inline">Fichas de Seguimiento</span></h1>
+          <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xxl-start mb-3">
+              <a class="btn btn-outline-primary btn-lg px-5 py-3 me-sm-3 fs-6 fw-bolder" href="{% url 'ficha_agregar' %}">Nueva Ficha</a>
+      </div>
+      </div>
+
+      <!-- Lista de Turnos-->
+      <div class="shadow border-0 rounded-4">
+        <table class="table table-hover">
+          <tbody>
+            <tr>
+              <th>Cuil</th>
+              <th>Turno</th>
+              <th>Peso</th>
+              <th>Talla</th>
+              <th>Observaciones</th>
+            </tr>
+            {% for dato in ficha %}
+            <tr>
+              <td>{{ dato.paciente }}</td>
+              <td>{{ dato.fecha }}</td>
+              <td>{{ dato.peso }}</td>
+              <td>{{ dato.talla }}</td>
+              <td>{{ dato.observaciones }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      
+  {% endblock contenido%}
+

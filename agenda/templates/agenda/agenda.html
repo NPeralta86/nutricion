@@ -1,0 +1,38 @@
+{% extends 'agenda/base.html' %} 
+
+  {% block contenido%}
+ 
+      <!-- Encabezado de Seccion-->
+      <div class="text-center text-xxl-start">
+          <div class="badge bg-gradient-primary-to-secondary text-white mb-4"><div class="text-uppercase"> &middot; Agenda &middot;</div></div>
+          <div class="fs-3 fw-light text-muted">Administrar y Consultar</div>
+          <h1 class="display-3 fw-bolder mb-5"><span class="text-secondary d-inline">Mis Turnos</span></h1>
+          <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xxl-start mb-3">
+              <a class="btn btn-outline-secondary btn-lg px-5 py-3 me-sm-3 fs-6 fw-bolder" href="{% url 'agenda_agregar' %}">Solicitar Turno</a>
+      </div>
+      </div>
+
+      <!-- Lista de Turnos-->
+      <div class="shadow border-0 rounded-4">
+        <table class="table table-hover">
+          <tbody>
+            <tr>
+              <th>Fecha Turno</th>
+              <th>Hora Turno</th>
+              <th>Cuil</th>
+              <th>Descripción</th>
+            </tr>
+            {% for cita in agenda %}
+            <tr>
+              <td>{{ cita.fecha }}</td>
+              <td>{{ cita.hora }}</td>
+              <td>{{ cita.paciente }}</td>
+              <td>{{ cita.descripcion }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      
+  {% endblock contenido%}
+

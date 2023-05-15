@@ -1,0 +1,29 @@
+{% extends 'agenda/base.html' %} 
+
+  {% block contenido%}
+
+<div class="bg-light rounded-4 py-5 px-4 px-md-5">
+  <div class="text-center mb-5">
+    <div class="feature bg-primary bg-gradient-primary-to-secondary text-white rounded-3 mb-3"><i class="bi bi-person-fill"></i></div>
+        <h1 class="fw-bolder">Nuevo Paciente</h1>
+        <p class="lead fw-normal text-muted mb-0">Ingresa los datos personales</p>
+    </div>
+  <div class="row gx-5 justify-content-center">
+  <div class="col-lg-8 col-xl-6">
+
+<form action = "{% url 'pacientes_agregar'%}" method="post">
+  {% csrf_token %}
+
+  {{formulario.as_p}}
+  {{formulario.errors}}
+
+  <div class="d-grid">
+    <input type = "submit" class="btn btn-outline-dark "  value = "Crear Paciente" />
+  </div>  
+</form>
+
+  </div>
+  </div>
+  </div>
+</div>
+  {% endblock contenido%}
