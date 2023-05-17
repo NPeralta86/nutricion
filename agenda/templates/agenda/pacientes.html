@@ -36,7 +36,7 @@
               <th>Nombres</th>
               <th>Fecha Nacimiento</th>
               <th>Genero</th>
-              <th>Elminar</th>
+              <th></th>
             </tr>
             {% for paciente in pacientes %}
             <tr>
@@ -46,9 +46,12 @@
               <td>{{ paciente.nacimiento }}</td>
               <td>{{ paciente.genero }}</td>
               <td>
+                
+                <a href = "{% url 'pacientes_editar' paciente.cuil%}" class="btn btn-outline-black"> Editar</a> 
+
                 <form action = "{% url 'pacientes_eliminar' paciente.cuil%}" method="post">
                   {% csrf_token %}
-                  <input type = "submit" class="btn btn-outline-dark  "  value = "Eliminar" />
+                  <input type = "submit" class="btn btn-outline-danger  "  value = "Eliminar" />
                 </form>  
               </td>
             </tr>

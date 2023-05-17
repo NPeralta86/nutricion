@@ -48,6 +48,38 @@ def vista_pacientes_agregar(request):
         return http_response
 
 
+def vista_pacientes_editar(request, pk):
+    paciente = pacientes.objects.get(cuil=pk)
+    if request.method == "POST":
+        formulario = form_pacientes(request.POST)
+
+        if formulario.is_valid():
+            data = formulario.cleaned_data
+            paciente.cuil = data["cuil"]
+            paciente.apellido = data["apellido"]
+            paciente.nombres = data["nombres"]
+            paciente.nacimiento = data["nacimiento"]
+            paciente.genero = data["genero"]
+            paciente.save()
+
+            url_exitosa = reverse('pacientes')
+            return redirect(url_exitosa)
+    else:  # GET
+        inicial = {
+            'cuil': paciente.cuil,
+            'apellido': paciente.apellido,
+            'nombres': paciente.nombres,
+            'nacimiento': paciente.nacimiento,
+            'genero': paciente.genero,
+        }
+        formulario = form_pacientes(initial=inicial)
+    return render(
+        request=request,
+        template_name='agenda/pacientes_agregar.html',
+        context={'formulario': formulario},
+    )
+
+
 def vista_pacientes_eliminar(request, pk):
     paciente = pacientes.objects.get(cuil=pk)
     if request.method == "POST":
