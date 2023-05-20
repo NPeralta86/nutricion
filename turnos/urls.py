@@ -21,5 +21,6 @@ from . import views
 urlpatterns = [
     path('', views.vista_index, name = "index"),
     path('admin/', admin.site.urls),
-    path('', include('agenda.urls'))
+    path('', include('agenda.urls')),
+    path('', include('pacientes.urls'))
 ]
