@@ -14,22 +14,11 @@
 <form method="post">
  {% csrf_token %}
  {{ form.as_p }}
- 
-  <div class="d-grid">
- <input type="submit"  class="btn btn-outline-dark "  value="Registrarse" />
+
+ <div class="d-grid">
+ <input type="submit" value="Iniciar Sesión" />
  </div>
 </form>
-
-{% comment %} <form method="post">
-  {% csrf_token %}
-
-  {{formulario.as_p}}
-  {{formulario.errors}}
-
-  <div class="d-grid">
-    <input type = "submit" class="btn btn-outline-dark "  value = "Guardar" />
-  </div>  
-</form> {% endcomment %}
 
   </div>
   </div>
