@@ -2,7 +2,7 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse, reverse_lazy
 
-from pacientes.forms import UserRegisterForm
+from pacientes.forms import UserRegisterForm, UserLoginForm
 
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm
@@ -41,7 +41,7 @@ def login_view(request):
                url_exitosa = reverse('index')
                return redirect(url_exitosa)
    else:  # GET
-       form = AuthenticationForm()
+       form = UserLoginForm()
    return render(
        request=request,
        template_name='pacientes/login.html',

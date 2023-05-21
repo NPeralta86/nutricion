@@ -11,8 +11,10 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>Nutricion | Salud</title>
-    {% comment %} <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" /> {% endcomment %}
+    {% comment %}
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    {% endcomment %}
     <!-- Custom Google font-->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -27,7 +29,6 @@
     />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
-    
   </head>
 
   <body class="d-flex flex-column h-100">
@@ -36,8 +37,9 @@
       <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
         <div class="container px-5">
           <a class="navbar-brand" href="{% url 'index' %}"
-            ><span class="fw-bolder text-primary">Nutri <i class="bi bi-egg-fill text-gradient"> </i></span></a
-          >
+            ><span class="fw-bolder text-primary"
+              >Nutri <i class="bi bi-egg-fill text-gradient"> </i></span
+          ></a>
           <button
             class="navbar-toggler"
             type="button"
@@ -60,6 +62,38 @@
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'ficha' %}">Ficha</a>
               </li>
+
+              {% if user.is_authenticated %}
+              <div class="dropdown">
+                <button
+                  class="btn btn-outline-primary btn-sm dropdown-toggle"
+                  type="button"
+                  data-bs-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  {{user.first_name}}
+                </button>
+                <div class="dropdown-menu">
+                  <h6 class="dropdown-header">Titulo</h6>
+                  <a class="dropdown-item" href="#">Mi Perfil</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item text-danger" href="{% url 'logout' %}"
+                    >Cerrar Sesión</a
+                  >
+
+                  {% else %}
+                  <div class="container">
+                  <a class="btn btn-outline-primary btn-sm" href="{% url 'login' %}">
+                    Iniciar Sesión
+                  </a>
+                  <a class="btn btn-outline-secondary btn-sm" href="{% url 'registro' %}">
+                    Registrarse
+                  </a>
+                  </div>
+                  {% endif %}
+                </div>
+              </div>
             </ul>
           </div>
         </div>
@@ -81,7 +115,9 @@
           class="row align-items-center justify-content-between flex-column flex-sm-row"
         >
           <div class="col-auto">
-            <div class="small m-0"> <b> &copy;  Peralta, Nicolás</b> | Coderhouse - Python - 40440</div>
+            <div class="small m-0">
+              <b> &copy; Peralta, Nicolás</b> | Coderhouse - Python - 40440
+            </div>
           </div>
         </div>
       </div>

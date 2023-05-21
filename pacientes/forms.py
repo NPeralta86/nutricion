@@ -1,6 +1,6 @@
 from django import forms
 from django.core.validators import RegexValidator
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 
 class UserRegisterForm(UserCreationForm):
@@ -23,3 +23,10 @@ class UserRegisterForm(UserCreationForm):
        model = User
        fields = ['username', 'last_name', 'first_name', 'birth_date', 'gender',
                  'email', 'password1', 'password2']
+
+
+class UserLoginForm(AuthenticationForm):
+   username = forms.CharField(label='', max_length=11, widget=forms.TextInput(
+       attrs={'placeholder': 'Cuil', 'class ': 'form-control'}))
+   password = forms.CharField(label='', widget=forms.PasswordInput(
+       attrs={'placeholder': 'Contraseña', 'class ': 'form-control'}))
