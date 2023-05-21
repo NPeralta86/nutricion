@@ -1,0 +1,32 @@
+{% extends 'agenda/base.html' %} 
+
+  {% block contenido%}
+
+<div class="text-center text-xxl-start">
+  <div class="badge bg-gradient-primary-to-secondary text-white mb-4"><div class="text-uppercase"> &middot; Mi Perfil &middot;</div></div>
+</div>
+
+<div class="bg-light rounded-4 py-5 px-4 px-md-5">
+  <div class=" mb-5">
+          <h2 h2 class="display-5 fw-bolder">
+            <span class="text-gradient d-inline">{{user.last_name}}, {{user.first_name}} </span>
+          </h2>
+        <p class="lead fw-normal text-muted mb-0">{{user.email}}</p>
+    </div>
+  <div class="row gx-5 ">
+  <div class="col-lg-8 col-xl-6">
+
+<form method="post">
+ {% csrf_token %}
+ {{ form.as_p }}
+
+ 
+ <input type="submit" class="btn btn-outline-dark " value="Guardar" />
+ 
+</form>
+
+  </div>
+  </div>
+  </div>
+</div>
+  {% endblock contenido%}
