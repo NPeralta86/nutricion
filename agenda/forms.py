@@ -8,7 +8,7 @@ class form_pacientes(forms.Form):
     genero = forms.CharField(max_length=1, label='', widget=forms.TextInput(attrs={'placeholder': 'Género','class':'form-control'}))
 
 class form_agenda(forms.Form):
-    paciente = forms.CharField(required=True, max_length=11, label='', widget=forms.TextInput(attrs={'placeholder': 'Cuil','class':'form-control'}))
+    # paciente = forms.CharField(required=True, max_length=11, label='', widget=forms.TextInput(attrs={'placeholder': 'Cuil','class':'form-control'}))
     fecha = forms.DateField(required=True, label='', widget=forms.TextInput(attrs={'placeholder': 'Fecha turno','class':'form-control'}))
     hora = forms.TimeField(required=True, label='', widget=forms.TextInput(attrs={'placeholder': 'Hora turno','class':'form-control'}))
     descripcion = forms.CharField(max_length=200, label='', widget=forms.TextInput(attrs={'placeholder': 'Notas','class':'form-control'}))

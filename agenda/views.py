@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
 
 from .models import agenda, pacientes, ficha
 from .forms import form_pacientes, form_agenda, form_ficha
@@ -17,7 +18,7 @@ def vista_pacientes(request):
     )
     return http_response
 
-
+@login_required
 def vista_pacientes_agregar(request):
     if request.method == "POST":
         formulario = form_pacientes(request.POST)
@@ -47,7 +48,7 @@ def vista_pacientes_agregar(request):
         )
         return http_response
 
-
+@login_required
 def vista_pacientes_editar(request, pk):
     paciente = pacientes.objects.get(cuil=pk)
     if request.method == "POST":
@@ -116,13 +117,14 @@ def vista_agenda(request):
     return http_response
 
 
+@login_required
 def vista_agenda_agregar(request):
     if request.method == "POST":
         formulario = form_agenda(request.POST)
 
         if formulario.is_valid():
             data = formulario.cleaned_data
-            paciente = data["paciente"]
+            paciente = request.user
             fecha = data["fecha"]
             hora = data["hora"]
             descripcion = data["descripcion"]
