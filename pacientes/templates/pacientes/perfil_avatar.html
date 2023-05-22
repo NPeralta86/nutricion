@@ -11,8 +11,6 @@
   <div class=" col-xxl-7 mb-5">
     
           <h2 h2 class="display-5 fw-bolder">
-            {% comment %} <img src="{{ user.avatar.imagen.url }}" /> {% endcomment %}
-
             <span class="text-gradient d-inline">{{user.last_name}}, {{user.first_name}} </span>
           </h2>
         <p class="lead fw-normal text-muted mb-0">{{user.email}}</p>
@@ -21,15 +19,16 @@
 
 
   <div class="col-xxl-5 gx-5 ">
-    <h3 class="text-black d-inline">Edita tus datos</h3>
+    <h2 class="text-black d-inline">Cambia imagen de perfil </h2>
     <hr>
     <div class="col-lg-8 col-xl-6">
 
-      <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}       
-        <input type="submit" class="btn btn-outline-dark " value="Guardar" />
+      <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <input type="submit" value="Subir imagen"/>
       </form>
+
 
     </div>
   </div>

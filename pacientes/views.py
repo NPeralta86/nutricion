@@ -2,7 +2,8 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse, reverse_lazy
 
-from pacientes.forms import UserRegisterForm, UserLoginForm, UserUpdateForm
+from pacientes.forms import UserRegisterForm, UserLoginForm, UserUpdateForm, AvatarFormulario
+#from pacientes.models import Avatar
 
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.views import LogoutView
@@ -68,3 +69,22 @@ class MiPerfilUpdateView(LoginRequiredMixin, UpdateView):
 
    def get_object(self, queryset=None):
        return self.request.user
+
+
+def agregar_avatar(request):
+  if request.method == "POST":
+      formulario = AvatarFormulario(request.POST, request.FILES)
+
+      if formulario.is_valid():
+          avatar = formulario.save()
+          avatar.user = request.user
+          avatar.save()
+          url_exitosa = reverse('perfil')
+          return redirect(url_exitosa)
+  else:  # GET
+      formulario = AvatarFormulario()
+  return render(
+      request=request,
+      template_name="pacientes/perfil_avatar.html",
+      context={'form': formulario},
+  )

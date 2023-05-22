@@ -2,6 +2,7 @@ from django import forms
 from django.core.validators import RegexValidator
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
+from pacientes.models import Avatar
 
 class UserRegisterForm(UserCreationForm):
    # Esto es un ModelForm
@@ -43,3 +44,10 @@ class UserUpdateForm(forms.ModelForm):
    class Meta:
        model = User
        fields = ['last_name', 'first_name','email']
+
+
+class AvatarFormulario(forms.ModelForm):
+
+   class Meta:
+       model = Avatar
+       fields = ['imagen']
