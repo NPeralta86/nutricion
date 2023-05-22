@@ -1,40 +1,49 @@
-{% extends 'agenda/base.html' %} 
-
-  {% block contenido%}
+{% extends 'agenda/base.html' %} {% block contenido%}
 
 <div class="text-center text-xxl-start">
-  <div class="badge bg-gradient-primary-to-secondary text-white mb-4"><div class="text-uppercase"> &middot; Mi Perfil &middot;</div></div>
+  <div class="badge bg-gradient-primary-to-secondary text-white mb-4">
+    <div class="text-uppercase">&middot; Mi Perfil &middot;</div>
+  </div>
 </div>
 
-<div class=" bg-light rounded-4 py-5 px-4 px-md-5">
+{% comment %}
+<div class="bg-light rounded-4 py-5 px-4 px-md-5">
+  {% endcomment %}
   <div class="row px-5 pb-5">
-  <div class=" col-xxl-7 mb-5">
-    
-          <h2 h2 class="display-5 fw-bolder">
-            {% comment %} <img src="{{ user.avatar.imagen.url }}" /> {% endcomment %}
-
-            <span class="text-gradient d-inline">{{user.last_name}}, {{user.first_name}} </span>
-          </h2>
-        <p class="lead fw-normal text-muted mb-0">{{user.email}}</p>
+    <div class="col-sm-20 col-md-10 col-lg-7">
+      <div class="card w-75 cardExcursion mx-auto d-block">
+        <div class="content">
+          <div class="content-overlay"></div>
+          <img
+            src="{{ user.avatar.imagen.url }}"
+            class="card-img-top"
+            alt="Imagen de Perfil"
+          />
+          <div class="card-body">
+            <p class="display-6 fw-bolder">
+              <span class="text-gradient d-inline"
+                >{{user.last_name}}, {{user.first_name}}
+              </span>
+            </p>
+            <p class="lead fw-normal text-muted mb-0">{{user.email}}</p>
+          </div>
+        </div>
+      </div>
     </div>
 
-
-
-  <div class="col-xxl-5 gx-5 ">
-    <h3 class="text-black d-inline">Edita tus datos</h3>
-    <hr>
-    <div class="col-lg-8 col-xl-6">
-
-      <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}       
-        <input type="submit" class="btn btn-outline-dark " value="Guardar" />
-      </form>
-
+    <div class="col-xxl-5 gx-5">
+      <div class="bg-light rounded-4 py-5 px-4 px-md-5">
+        <h3 class="text-black d-inline">Edita tus datos</h3>
+        <hr />
+        <div class="col-lg-8 col-xl-12">
+          <form method="post">
+            {% csrf_token %} {{ form.as_p }}
+            <input type="submit" class="btn btn-outline-dark" value="Guardar" />
+          </form>
+        </div>
+      </div>
     </div>
   </div>
-  </div>
-  </div>
-</div>
 
   {% endblock contenido%}
+</div>

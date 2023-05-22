@@ -64,7 +64,7 @@ class CustomLogoutView(LogoutView):
 
 class MiPerfilUpdateView(LoginRequiredMixin, UpdateView):
    form_class = UserUpdateForm
-   success_url = reverse_lazy('index')
+   success_url = reverse_lazy('perfil')
    template_name = 'pacientes/perfil.html'
 
    def get_object(self, queryset=None):
