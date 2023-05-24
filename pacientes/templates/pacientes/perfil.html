@@ -6,9 +6,40 @@
   </div>
 </div>
 
-{% comment %}
-<div class="bg-light rounded-4 py-5 px-4 px-md-5">
-  {% endcomment %}
+{% comment %} 
+      <div class="shadow border-0 rounded-4">
+      <div class="col-xxl-5 gx-5">
+        <img 
+            src="{{ user.avatar.imagen.url }}"
+            class="w-25 mx-auto d-block"
+            alt="Imagen de Perfil"
+          />
+                      <p class="display-6 fw-bolder">
+              <span class="text-gradient d-inline"
+                >{{user.last_name}}, {{user.first_name}}
+              </span>
+            </p>
+            <p class="lead fw-normal text-muted mb-0">{{user.email}}</p>
+
+      </div>
+      </div> 
+ {% endcomment %}
+      {% comment %} <div class="shadow border-0 rounded-4">
+      <p>
+  <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+    Editar Perfil
+  </a>
+</p>
+<div class="collapse" id="collapseExample">
+  <div class="card card-body">
+          <form method="post">
+            {% csrf_token %} {{ form.as_p }}
+            <input type="submit" class="btn btn-outline-dark" value="Guardar" />
+          </form>
+  </div>
+</div>
+</div> {% endcomment %}
+
   <div class="row px-5 pb-5">
     <div class="col-sm-20 col-md-10 col-lg-7">
       <div class="card w-75 cardExcursion mx-auto d-block">
@@ -43,7 +74,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> 
 
   {% endblock contenido%}
 </div>
