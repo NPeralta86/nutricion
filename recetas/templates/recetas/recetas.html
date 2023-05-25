@@ -5,56 +5,44 @@
       <!-- Encabezado de Seccion-->
       <div class="text-center text-xxl-start">
           <div class="badge bg-gradient-primary-to-secondary text-white mb-4"><div class="text-uppercase"> &middot; Recetas &middot;</div></div>
-          <div class="fs-3 fw-light text-muted">Consulta | Comparti</div>
-          <h1 class="display-3 fw-bolder mb-5"><span class="text-gradient d-inline">Recetario Nutri</span></h1>
-          <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xxl-start mb-3">
-              <a class="btn btn-primary btn-lg px-5 py-3 me-sm-3 fs-6 fw-bolder" href="{% url 'recetas_agregar' %}">Nueva Receta</a>
-          </div>
+          <div class="fs-3 fw-light text-muted">Consulta  &middot; Compartí &middot; Disfrutá</div>
+          <h1 class="display-3 fw-bolder mb-5"><span class="text-gradient d-inline">Recetario</span></h1>
       </div>
 
         <form action="{% url 'recetas_buscar' %}" method="post">
             {% csrf_token %}
           <div class="row">
-            <div class="col">
+            <div class="col-sm-7">
                 <input type="text" class="form-control " placeholder="Buscar por categoria" name="busqueda">
             </div>
-            <div class="col">
-              <input type="submit" class="btn btn-outline-dark btn-md mb-2" value="Buscar">
+            <div class="col-sm-1">
+              <input type="submit" class="btn btn-outline-dark btn-md mb-5" value="Buscar">
             </div>
+            {% if user.is_authenticated %}
+            <div class="col">
+              <a class="btn btn-outline-secondary btn-md mb-5" href="{% url 'recetas_autor'%}"> Ver mis Recetas</a>
+            </div>            
+            <div class="col">
+              <a class="btn btn-outline-primary btn-md mb-5" href="{% url 'recetas_agregar' %}"> Redactar</a>
+            </div>
+            {%endif%}            
           </div>
         </form>
-      <!-- Lista de Pacientes-->
-      <div class="shadow border-0 rounded-4">
-        <table class="table table-hover">
-          <tbody >
-            <tr>
-              <th>Cuil</th>
-              <th>Apellido</th>
-              <th>Nombres</th>
-              <th>Fecha Nacimiento</th>
-              <th>Genero</th>
-              <th></th>
-            </tr>
-            {% for receta in recetas %}
-            <tr>
-              <td>{{ receta.titulo }}</td>
-              <td>{{ receta.categoria }}</td>              
-              <td>{{ receta.ingredientes }}</td>
-              <td>{{ receta.detalle }}</td> 
-              <td>{{ receta.autor.last_name }},{{ receta.autor.first_name}} </td>
-              <td>{{ receta.fecha }}</td>
-              <td>
-                
+      <!-- Lista de Recetas-->
 
-                <form action = "{% url 'recetas_eliminar' receta.id%}" method="post">
-                  {% csrf_token %}
-                  <input type = "submit" class="btn btn-outline-danger  "  value = "Eliminar" />
-                </form>  
-              </td> 
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-      </div>
+      {% for receta in recetas %}
       
+      <div class="card shadow border-0 rounded-4 " style="height: 18rem; width: 18rem; margin-right: 10px; margin-bottom: 10px;">
+        <div class="card-body">
+          <p class="card-text">{{ receta.categoria }}</p>
+          <h3 class="card-title">{{ receta.titulo }}</h3>
+          <p class="card-text"><i class="bi bi-person-fill" style="margin-right: 5px;"></i>{{ receta.autor.last_name}}, {{ receta.autor.first_name}}</p>
+          <p class="card-text"><i class="bi bi-calendar" style="margin-right: 5px;"></i>{{ receta.fecha}}</p>
+
+          <a href="{% url 'recetas_detalle' receta.id%}" class="btn btn-outline-secondary">Ver Receta</a>
+        </div>
+      </div>
+
+      {% endfor %}
+
   {% endblock contenido%}

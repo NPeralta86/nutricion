@@ -20,7 +20,20 @@ def vista_recetas(request):
     )
     return http_response
 
+@login_required
+def vista_recetas_autor(request):
+    contexto = {
+        "recetas": recetas.objects.all(),
+    }
+    http_response = render(
+        request=request,
+        template_name='recetas/recetas_autor.html',
+        context=contexto,
+    )
+    return http_response
 
+
+@login_required
 def vista_recetas_agregar(request):
     if request.method == "POST":
         formulario = form_recetas(request.POST)
@@ -76,6 +89,7 @@ def vista_recetas_detalle(request, pk):
     return render(request, 'recetas/recetas_detalle.html', context=contexto)
 
 
+@login_required
 def vista_recetas_editar(request, pk):
     receta = recetas.objects.get(id=pk)
     if request.method == "POST":
@@ -108,9 +122,10 @@ def vista_recetas_editar(request, pk):
     )
 
 
+@login_required
 def vista_recetas_eliminar(request, pk):
     receta = recetas.objects.get(id=pk)
     if request.method == "POST":
         receta.delete()
-        url_exitosa = reverse('recetas')
+        url_exitosa = reverse('recetas_autor')
         return redirect(url_exitosa)

@@ -1,0 +1,35 @@
+{% extends 'agenda/base.html' %} 
+
+  {% block contenido%}
+ 
+      <!-- Encabezado de Seccion-->
+      <div class="text-center text-xxl-start">
+          <div class="badge bg-gradient-primary-to-secondary text-white mb-4"><div class="text-uppercase"> &middot; Recetas &middot;</div></div>
+          <div class="fs-3 fw-light text-muted">Consulta  &middot; Editá &middot; Eliminá</div>
+          <h1 class="display-3 fw-bolder mb-5"><span class="text-primary d-inline">Mis Recetas</span></h1>
+      </div>
+
+      <!-- Lista de Recetas-->
+
+      {% for receta in recetas %}
+      {% if receta.autor_id == user.id%}
+
+      <div class="card shadow border-0 rounded-4 " style="height: 18rem; width: 18rem; margin-right: 10px; margin-bottom: 10px;">
+        <div class="card-body">
+          <p class="card-text">{{ receta.categoria }}</p>
+          <h3 class="card-title">{{ receta.titulo }}</h3>
+          <p class="card-text"><i class="bi bi-person-fill" style="margin-right: 5px;"></i>{{ receta.autor.last_name}}, {{ receta.autor.first_name}}</p>
+          <p class="card-text"><i class="bi bi-calendar" style="margin-right: 5px;"></i>{{ receta.fecha}}</p>
+
+          <a href="{% url 'recetas_detalle' receta.id%}" class="btn btn-outline-secondary">Ver </a>
+          <a href="{% url 'recetas_editar' receta.id%}" class="btn btn-outline-secondary">Editar</a>          
+          <form action = "{% url 'recetas_eliminar' receta.id%}" method="post">
+            {% csrf_token %}
+            <input type = "submit" class="btn btn-outline-danger  " value = "Eliminar" />
+          </form>  
+
+        </div>
+      </div>
+      {% endif %}
+      {% endfor %}
+  {% endblock contenido%}
