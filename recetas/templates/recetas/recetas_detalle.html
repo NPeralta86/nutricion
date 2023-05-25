@@ -1,0 +1,32 @@
+{% extends 'agenda/base.html' %} 
+
+  {% block contenido%}
+      <div class="text-center text-xxl-start">
+          <div class="badge bg-gradient-primary-to-secondary text-white mb-4"><div class="text-uppercase"> &middot; Recetas | Detalle &middot;</div></div>
+      </div>
+
+  
+<div class="bg-light rounded-4 py-5 px-4 px-md-5">
+  <div class="text">
+    <p class="lead fw-normal text-muted"><i class="bi bi-person-fill"></i>{{ receta.autor.last_name}}, {{ receta.autor.first_name}} |  {{ receta.fecha}}</p>
+  </div>  
+  <div class="text-center mb-5">
+    <div class="feature bg-primary bg-gradient-primary-to-secondary text-white rounded-3 mb-3"><i class="bi bi-journal-text"></i></div>
+  <div class="text">
+    <p class="lead fw-normal text-muted">{{ receta.categoria}}</p>
+  </div>
+        <h1 class="fw-bolder">{{receta.titulo}}</h1>
+        <h5 class="fw-bolder text-muted">Ingredientes</h5>        
+        <p class="lead fw-normal text-muted mb-0">{{ receta.ingredientes }}</p>
+        <h6 class="fw-bolder text-muted">Preparación</h6>        
+        <p class="lead fw-normal text-muted mb-0">{{ receta.detalle }}</p>
+    </div>
+  <div class="row gx-5 justify-content-center">
+  <div class="col-lg-8 col-xl-6">
+
+
+  </div>
+  </div>
+  </div>
+</div>
+  {% endblock contenido%}

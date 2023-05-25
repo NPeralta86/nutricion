@@ -4,7 +4,6 @@ from django.contrib.auth.decorators import login_required
 
 from .models import agenda, pacientes, ficha
 from .forms import form_pacientes, form_agenda, form_ficha
-# Create your views here.
 
 
 def vista_pacientes(request):
@@ -105,6 +104,7 @@ def vista_pacientes_buscar(request):
         return http_response
 
 
+@login_required
 def vista_agenda(request):
     contexto = {
         "agenda": agenda.objects.all(),
@@ -147,6 +147,16 @@ def vista_agenda_agregar(request):
         return http_response
 
 
+@login_required
+def vista_agenda_eliminar(request, pk):
+    turno = agenda.objects.get(id=pk)
+    if request.method == "POST":
+        turno.delete()
+        url_exitosa = reverse('agenda')
+        return redirect(url_exitosa)
+    
+    
+@login_required
 def vista_ficha(request):
     contexto = {
         "ficha": ficha.objects.all(),
@@ -159,13 +169,14 @@ def vista_ficha(request):
     return http_response
 
 
+@login_required
 def vista_ficha_agregar(request):
     if request.method == "POST":
         formulario = form_ficha(request.POST)
 
         if formulario.is_valid():
             data = formulario.cleaned_data
-            paciente = data["paciente"]
+            paciente = request.user
             fecha = data["fecha"]
             peso = data["peso"]
             talla = data["talla"]
@@ -187,3 +198,44 @@ def vista_ficha_agregar(request):
             context=contexto,
         )
         return http_response
+
+    
+@login_required
+def vista_ficha_eliminar(request, pk):
+    turno = ficha.objects.get(id=pk)
+    if request.method == "POST":
+        turno.delete()
+        url_exitosa = reverse('ficha')
+        return redirect(url_exitosa)
+
+
+@login_required
+def vista_ficha_editar(request, pk):
+    dato = ficha.objects.get(id=pk)
+    if request.method == "POST":
+        formulario = form_ficha(request.POST)
+
+        if formulario.is_valid():
+            data = formulario.cleaned_data
+            dato.paciente = request.user
+            dato.fecha = data["fecha"]
+            dato.peso = data["peso"]
+            dato.talla = data["talla"]
+            dato.observaciones = data["observaciones"]
+            dato.save()
+
+            url_exitosa = reverse('ficha')
+            return redirect(url_exitosa)
+    else:  # GET
+        inicial = {
+            'fecha': dato.fecha,
+            'peso': dato.peso,
+            'talla': dato.talla,
+            'observaciones': dato.observaciones,
+        }
+        formulario = form_ficha(initial=inicial)
+    return render(
+        request=request,
+        template_name='agenda/ficha_agregar.html',
+        context={'formulario': formulario},
+    )

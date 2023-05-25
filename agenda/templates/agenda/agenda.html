@@ -19,18 +19,28 @@
             <tr>
               <th>Fecha Turno</th>
               <th>Hora Turno</th>
-              <th>Cuil</th>
               <th>Descripción</th>
+              <th></th>
+
             </tr>
-            {% for cita in agenda %}
+            {% for turno in agenda %}            
+            {% if turno.paciente.id == user.id%}
             <tr>
-              <td>{{ cita.fecha }}</td>
-              <td>{{ cita.hora }}</td>
-              <td>{{ cita.paciente }}</td>
-              <td>{{ cita.descripcion }}</td>
+              <td>{{ turno.fecha }}</td>
+              <td>{{ turno.hora }}</td>
+              <td>{{ turno.descripcion }}</td>
+              <td> 
+                  <form action = "{% url 'agenda_eliminar' turno.id%}" method="post">
+                    {% csrf_token %}
+                    <button type = "submit" class="btn btn-outline-danger btn-sm">
+                      <i class=" bi bi-x-lg"></i>
+                    </button> 
+                  </form>
+              </td>
             </tr>
+            {% endif %}
             {% endfor %}
-          </tbody>
+            </tbody>
         </table>
       </div>
       

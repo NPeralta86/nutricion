@@ -10,8 +10,11 @@ urlpatterns = [
     
     path('agenda/', views.vista_agenda, name="agenda"),
     path('agenda-agregar/', views.vista_agenda_agregar, name="agenda_agregar"),
+    path('agenda-eliminar/<int:pk>/', views.vista_agenda_eliminar, name="agenda_eliminar"),
 
     path('ficha/', views.vista_ficha, name="ficha"),
     path('ficha-agregar/', views.vista_ficha_agregar, name="ficha_agregar"),
-
+    path('ficha-editar/<int:pk>/', views.vista_ficha_editar, name="ficha_editar"),
+    path('ficha-eliminar/<int:pk>/', views.vista_ficha_eliminar, name="ficha_eliminar"),
 ]
+

@@ -24,7 +24,8 @@ urlpatterns = [
     path('', views.vista_index, name = "index"),
     path('admin/', admin.site.urls),
     path('', include('agenda.urls')),
-    path('', include('pacientes.urls'))
+    path('', include('pacientes.urls')),
+    path('', include('recetas.urls'))
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

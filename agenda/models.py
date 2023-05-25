@@ -28,7 +28,7 @@ class agenda(models.Model):
 
 
 class ficha(models.Model):
-    paciente = models.CharField(max_length=11)
+    paciente = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     fecha = models.DateField(null=True)
     peso=models.FloatField(null=True)
     talla=models.FloatField(null=True)
@@ -36,7 +36,7 @@ class ficha(models.Model):
     observaciones=models.CharField(max_length=1000, blank=True)
 
     def imc(self):
-        self.imc=self.peso / self.talla ** 2
+        self.imc = self.peso / (self.talla ** 2)
 
     def __str__(self):
         return f"{self.paciente} - {self.fecha} "
