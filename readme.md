@@ -1,4 +1,4 @@
-# Administración de Pacientes - Consultorio Nutrición
+# Comunidad de Pacientes - Consultorio Nutrición
 
 ## Instrucciones instalar proyecto en local
 
