@@ -14,7 +14,7 @@
       </div>
 
       <!-- Lista de Recetas-->
-    
+
       {% for receta in recetas %}
       {% if receta.autor_id == user.id%}
 
@@ -34,7 +34,7 @@
           </form>
         </div>  
       </div>
-
       {% endif %}
       {% endfor %}
+      
   {% endblock contenido%}           
