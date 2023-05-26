@@ -8,6 +8,7 @@ venv/
 .pytest_cache/
 pygsheets.egg-info/
 .pytest_cache/
+.ambiente_virtual/
 # media/*
 
 # Other
