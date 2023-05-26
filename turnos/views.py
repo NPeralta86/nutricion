@@ -12,3 +12,13 @@ def vista_index(request):
         context=contexto,
     )
     return http_response
+
+
+def vista_about(request):
+    contexto = {}
+    http_response = render(
+        request=request,
+        template_name='agenda/about.html',
+        context=contexto,
+    )
+    return http_response

@@ -45,11 +45,12 @@
       <div class="card w-75 cardExcursion mx-auto d-block">
         <div class="content">
           <div class="content-overlay"></div>
-          <img
-            src="{{ user.avatar.imagen.url }}"
-            class="card-img-top"
-            alt="Imagen de Perfil"
-          />
+            {% if user.avatar.imagen.url %}      
+              <img src="{{ user.avatar.imagen.url }}" class="card-img-top">
+            {% else %} 
+              <a class="btn btn-outline-secondary btn-md mb-5" href="{% url 'agregar_avatar'%}"> Subir Imagen de Perfil</a>
+            {% endif %}
+
           <div class="card-body">
             <p class="display-6 fw-bolder">
               <span class="text-gradient d-inline"

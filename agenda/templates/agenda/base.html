@@ -54,17 +54,11 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'recetas' %}">Recetas</a>
+                <a class="nav-link" href="{% url 'recetas' %}">Recetario</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'pacientes' %}">Pacientes</a>
+                <a class="nav-link" href="{% url 'about' %}">About</a>
               </li>
-              {% comment %} <li class="nav-item">
-                <a class="nav-link" href="{% url 'agenda' %}">Agenda</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'ficha' %}">Ficha</a>
-              </li> {% endcomment %}
 
               {% if user.is_authenticated %}
               <div class="dropdown "  >
@@ -85,9 +79,10 @@
                 </button>
                 <div class="dropdown-menu">
                   <h6 class="dropdown-header">{{user.first_name}} {{user.last_name}}</h6>
-                  <a class="dropdown-item" href="{% url 'perfil' %}">Mi Perfil</a>
-                  <a class="dropdown-item" href="{% url 'agenda' %}">Mis Turnos</a>
-                  <a class="dropdown-item" href="{% url 'ficha'%}">Mis Fichas</a>
+                  <a class="dropdown-item" href="{% url 'perfil' %}">Perfil</a>
+                  <a class="dropdown-item" href="{% url 'agenda' %}">Turnos</a>
+                  <a class="dropdown-item" href="{% url 'ficha'%}">Fichas</a>
+                  <a class="dropdown-item" href="{% url 'recetas_autor'%}">Mis Recetas</a>
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item text-danger" href="{% url 'logout' %}"
                     >Cerrar Sesión</a

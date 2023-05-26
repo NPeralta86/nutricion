@@ -105,7 +105,7 @@ def vista_recetas_editar(request, pk):
             receta.detalle = data["detalle"]
             receta.save()
 
-            url_exitosa = reverse('recetas')
+            url_exitosa = reverse('recetas_autor')
             return redirect(url_exitosa)
     else:  # GET
         inicial = {

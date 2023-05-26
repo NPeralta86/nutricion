@@ -15,7 +15,8 @@
   {% csrf_token %} {{formulario.as_p}} {{formulario.errors}}
 
   <div class="d-grid">
-    <input type="submit" class="btn btn-outline-dark " value="Agendar turno" />
+    <input type="submit" class="btn btn-outline-dark mb-2" value="Agendar turno" />
+    <a href="javascript:history.go(-1)" class="btn btn-outline-primary">Volver</a>
   </div>  
 </form>
 

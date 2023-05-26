@@ -28,6 +28,7 @@
             {%endif%}            
           </div>
         </form>
+    
       <!-- Lista de Recetas-->
 
       {% for receta in recetas %}
@@ -38,9 +39,10 @@
           <h3 class="card-title">{{ receta.titulo }}</h3>
           <p class="card-text"><i class="bi bi-person-fill" style="margin-right: 5px;"></i>{{ receta.autor.last_name}}, {{ receta.autor.first_name}}</p>
           <p class="card-text"><i class="bi bi-calendar" style="margin-right: 5px;"></i>{{ receta.fecha}}</p>
-
-          <a href="{% url 'recetas_detalle' receta.id%}" class="btn btn-outline-secondary">Ver Receta</a>
         </div>
+        <div class="card-footer bg-transparent">
+          <a href="{% url 'recetas_detalle' receta.id%}" class="btn btn-outline-secondary"><i class="bi bi-eye"style="margin-right: 5px;"></i>  Ver Receta</a>
+        </div>  
       </div>
 
       {% endfor %}

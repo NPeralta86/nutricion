@@ -21,7 +21,7 @@ def registro(request):
 
        if formulario.is_valid():
            formulario.save()  # Esto lo puedo usar porque es un model form
-           url_exitosa = reverse('index')
+           url_exitosa = reverse('login')
            return redirect(url_exitosa)
    else:  # GET
        formulario = UserRegisterForm()

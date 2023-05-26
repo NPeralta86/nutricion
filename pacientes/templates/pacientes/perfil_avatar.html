@@ -19,16 +19,16 @@
 
 
   <div class="col-xxl-5 gx-5 ">
-    <h2 class="text-black d-inline">Cambia imagen de perfil </h2>
+    <h2 class="text-black d-inline">Agrega una imagen de perfil </h2>
     <hr>
-    <div class="col-lg-8 col-xl-6">
+    <div class="col-lg-8 col-xl-6 ">
 
       <form method="post" enctype="multipart/form-data">
       {% csrf_token %}
       {{ form.as_p }}
-      <input type="submit" value="Subir imagen"/>
-      </form>
-
+      <input type="submit" class="btn btn-outline-primary " value="Subir imagen"/>
+      <a class="btn btn-outline-secondary" href="{% url 'perfil'%}"> Volver</a>
+     </form>
 
     </div>
   </div>

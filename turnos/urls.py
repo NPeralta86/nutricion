@@ -22,6 +22,7 @@ from . import views
 
 urlpatterns = [
     path('', views.vista_index, name = "index"),
+    path('about/', views.vista_about, name="about"),
     path('admin/', admin.site.urls),
     path('', include('agenda.urls')),
     path('', include('pacientes.urls')),

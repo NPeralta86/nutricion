@@ -31,14 +31,13 @@
               <td>{{ dato.talla }}</td>
               <td>{{ dato.observaciones }}</td>
               <td>
-                
-                <a href = "{% url 'ficha_editar' dato.id%}"  class=" btn btn-outline-dark btn-sm" href="">
-                  <i class="bi bi-pencil"></i>
-                </a>
-
                   
                 <form action = "{% url 'ficha_eliminar' dato.id%}" method="post">
                   {% csrf_token %}
+                  <a href = "{% url 'ficha_editar' dato.id%}"  class=" btn btn-outline-dark btn-sm" href="">
+                    <i class="bi bi-pencil"></i>
+                  </a>
+
                   <button type = "submit" class="btn btn-outline-danger btn-sm ">
                     <i class=" bi bi-x-lg"></i>
                   </button> 
