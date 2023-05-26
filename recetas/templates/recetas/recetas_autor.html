@@ -9,8 +9,10 @@
           <h1 class="display-3 fw-bolder mb-5"><span class="text-primary d-inline">Mis Recetas</span></h1>
 
           <div class="col">
-            <a class="btn btn-outline-primary btn-md mb-5" href="{% url 'recetas_agregar' %}"> Redactar</a>
+            <a class="btn btn-outline-primary btn-md mb-5" style="margin-right: 5px;" href="{% url 'recetas_agregar' %}"> Redactar</a>
+            <a class="btn btn-outline-secondary btn-md mb-5" href="{% url 'recetas'%}"> Ver Recetario</a>
           </div>
+       
       </div>
 
       <!-- Lista de Recetas-->
@@ -36,5 +38,5 @@
       </div>
       {% endif %}
       {% endfor %}
-      
+
   {% endblock contenido%}           
